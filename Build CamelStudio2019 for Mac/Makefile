@@ -17,7 +17,7 @@ CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -O2 -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../CamelStudio2019 -I. -I../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5 -I../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers -I../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers -I../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/Applications/Xcode10.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/Applications/Xcode10.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/AGL.framework/Headers/ -I. -I../../../../Qt/5.12.1/clang_64/mkspecs/macx-clang -F/Users/xr/Qt/5.12.1/clang_64/lib
+INCPATH       = -I../CamelStudio2019 -I. -I/opt/QScintilla_gpl-2.11.1/Qt4Qt5 -I../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers -I../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers -I../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/Applications/Xcode10.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/Applications/Xcode10.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/AGL.framework/Headers/ -I. -I../../../../Qt/5.12.1/clang_64/mkspecs/macx-clang -F/Users/xr/Qt/5.12.1/clang_64/lib
 QMAKE         = /Users/xr/Qt/5.12.1/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = CamelStudio20191.0.0
 DISTDIR = /Users/xr/Documents/GitHub/CamelStudio2019/Build\ CamelStudio2019\ for\ Mac/.tmp/CamelStudio20191.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Users/xr/Qt/5.12.1/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/xr/Qt/5.12.1/clang_64/lib -L/Users/xr/Documents/GitHub/CamelStudio2019/CamelStudio2019/../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/ -lqscintilla2_qt5 -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL   
+LIBS          = $(SUBLIBS) -F/Users/xr/Qt/5.12.1/clang_64/lib -L/Users/xr/Documents/GitHub/CamelStudio2019/CamelStudio2019/../../../../../../opt/QScintilla_gpl-2.11.1/Qt4Qt5/ -lqscintilla2_qt5.15.0.0 -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL   
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -263,7 +263,7 @@ include /Users/xr/Qt/5.12.1/clang_64/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-CamelStudio2019.app/Contents/MacOS/CamelStudio2019: /Users/xr/Documents/GitHub/CamelStudio2019/CamelStudio2019/../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/libqscintilla2_qt5.a ui_mainwindow.h $(OBJECTS)  
+CamelStudio2019.app/Contents/MacOS/CamelStudio2019: ui_mainwindow.h $(OBJECTS)  
 	@test -d CamelStudio2019.app/Contents/MacOS/ || mkdir -p CamelStudio2019.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -726,9 +726,45 @@ compiler_moc_header_clean:
 moc_mainwindow.cpp: ../CamelStudio2019/mainwindow.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../CamelStudio2019/Qsci/qsciscintilla.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QByteArray \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/QList \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QPointer \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qpointer.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QStringList \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciglobal.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qglobal.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscicommand.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciscintillabase.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/QAbstractScrollArea \
+		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QPoint \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qpoint.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscidocument.h \
+		../CamelStudio2019/Qsci/qscilexercpp.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscilexer.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/QColor \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/qcolor.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/QFont \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/qfont.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QString \
+		../CamelStudio2019/Qsci/qsciapis.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QPair \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qpair.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciabstractapis.h \
 		moc_predefs.h \
 		../../../../Qt/5.12.1/clang_64/bin/moc
-	/Users/xr/Qt/5.12.1/clang_64/bin/moc $(DEFINES) --include '/Users/xr/Documents/GitHub/CamelStudio2019/Build CamelStudio2019 for Mac/moc_predefs.h' -I/Users/xr/Qt/5.12.1/clang_64/mkspecs/macx-clang -I/Users/xr/Documents/GitHub/CamelStudio2019/CamelStudio2019 -I/Users/xr/Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5 -I/Users/xr/Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/xr/Qt/5.12.1/clang_64/lib/QtGui.framework/Headers -I/Users/xr/Qt/5.12.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/xr/Qt/5.12.1/clang_64/lib ../CamelStudio2019/mainwindow.h -o moc_mainwindow.cpp
+	/Users/xr/Qt/5.12.1/clang_64/bin/moc $(DEFINES) --include '/Users/xr/Documents/GitHub/CamelStudio2019/Build CamelStudio2019 for Mac/moc_predefs.h' -I/Users/xr/Qt/5.12.1/clang_64/mkspecs/macx-clang -I/Users/xr/Documents/GitHub/CamelStudio2019/CamelStudio2019 -I/opt/QScintilla_gpl-2.11.1/Qt4Qt5 -I/Users/xr/Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/xr/Qt/5.12.1/clang_64/lib/QtGui.framework/Headers -I/Users/xr/Qt/5.12.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/xr/Qt/5.12.1/clang_64/lib ../CamelStudio2019/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -756,15 +792,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 main.o: ../CamelStudio2019/main.cpp ../CamelStudio2019/mainwindow.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
-		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CamelStudio2019/main.cpp
-
-mainwindow.o: ../CamelStudio2019/mainwindow.cpp ../CamelStudio2019/mainwindow.h \
-		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		ui_mainwindow.h \
-		../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciscintilla.h \
+		../CamelStudio2019/Qsci/qsciscintilla.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QByteArray \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/QList \
@@ -775,20 +803,20 @@ mainwindow.o: ../CamelStudio2019/mainwindow.cpp ../CamelStudio2019/mainwindow.h 
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qpointer.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QStringList \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
-		../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciglobal.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciglobal.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qglobal.h \
-		../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscicommand.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscicommand.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciscintillabase.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciscintillabase.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/QAbstractScrollArea \
 		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QPoint \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qpoint.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qtimer.h \
-		../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscidocument.h \
-		../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscilexercpp.h \
-		../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscilexer.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscidocument.h \
+		../CamelStudio2019/Qsci/qscilexercpp.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscilexer.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/QColor \
 		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/qcolor.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/QFont \
@@ -796,10 +824,54 @@ mainwindow.o: ../CamelStudio2019/mainwindow.cpp ../CamelStudio2019/mainwindow.h 
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QMap \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QString \
-		../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciapis.h \
+		../CamelStudio2019/Qsci/qsciapis.h \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QPair \
 		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qpair.h \
-		../../../../Desktop/IOT2019/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciabstractapis.h
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciabstractapis.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CamelStudio2019/main.cpp
+
+mainwindow.o: ../CamelStudio2019/mainwindow.cpp ../CamelStudio2019/mainwindow.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../CamelStudio2019/Qsci/qsciscintilla.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QByteArray \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/QList \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QPointer \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qpointer.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QStringList \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciglobal.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qglobal.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscicommand.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciscintillabase.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/QAbstractScrollArea \
+		../../../../Qt/5.12.1/clang_64/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QPoint \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qpoint.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscidocument.h \
+		../CamelStudio2019/Qsci/qscilexercpp.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qscilexer.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/QColor \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/qcolor.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/QFont \
+		../../../../Qt/5.12.1/clang_64/lib/QtGui.framework/Headers/qfont.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QString \
+		../CamelStudio2019/Qsci/qsciapis.h \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/QPair \
+		../../../../Qt/5.12.1/clang_64/lib/QtCore.framework/Headers/qpair.h \
+		/opt/QScintilla_gpl-2.11.1/Qt4Qt5/Qsci/qsciabstractapis.h \
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../CamelStudio2019/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
