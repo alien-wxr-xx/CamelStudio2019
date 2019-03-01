@@ -10,7 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     textEdit = new QsciScintilla(this);
     setCentralWidget(textEdit);
     textLexer = new QsciLexerCPP;
-    textLexer->setColor(QColor(Qt:: yellow),QsciLexerCPP::CommentLine);
+    textLexer->setColor(QColor(Qt:: yellow),
+                        QsciLexerCPP::CommentLine);
     textEdit->setLexer(textLexer);
 }
 
