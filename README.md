@@ -9,6 +9,6 @@ Next generation CamelStudio on main desktop platforms(Windows, macOS, maybe Linu
 # License
 Copyright (c) Xiaorong Wang. All rights reserved.
 
-Licensed under the  License.
+Licensed under the LPGLv3 License.
 
 # Acknowledgement
