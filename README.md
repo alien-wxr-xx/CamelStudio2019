@@ -6,6 +6,8 @@ Next generation CamelStudio on main desktop platforms(Windows, macOS, maybe Linu
 - A more powerful built-in serial-port program.
 - Supporting C2 series chips.
 
+# History
+
 # License
 Copyright (c) Xiaorong Wang. All rights reserved.
 
